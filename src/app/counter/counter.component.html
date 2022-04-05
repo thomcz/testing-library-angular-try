@@ -1,3 +1,5 @@
-<button (click)="decrement()">Decrement</button>
-<span data-testid="value">Current Count: {{ value }}</span>
-<button (click)="increment()">Increment</button>
+<ng-container *ngIf="counter$|async as counter">
+  <button (click)="decrement(counter)">Decrement</button>
+  <span data-testid="value">Current Count: {{ counter.value }}</span>
+  <button (click)="increment(counter)">Increment</button>
+</ng-container>

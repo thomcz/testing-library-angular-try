@@ -1,4 +1,7 @@
 import {Component} from '@angular/core';
+import {Counter, CounterRepository} from "./counter.repository";
+import {Observable} from "rxjs";
+
 
 @Component({
   selector: 'app-counter',
@@ -6,14 +9,21 @@ import {Component} from '@angular/core';
   styleUrls: ['./counter.component.scss']
 })
 export class CounterComponent {
+  counter$: Observable<Counter>
 
-  value = 0;
-
-  decrement() {
-    this.value -= 1;
+  constructor(private counterRepository: CounterRepository) {
+    this.counter$ = counterRepository.loadEntity()
   }
 
-  increment() {
-    this.value += 1;
+  decrement(counter: Counter) {
+    this.counterRepository.updateStore({
+      value: counter.value - 1
+    })
+  }
+
+  increment(counter: Counter) {
+    this.counterRepository.updateStore({
+      value: counter.value + 1
+    })
   }
 }
