@@ -25,7 +25,6 @@ export abstract class Repository<T> {
 
   abstract getLocalStorageName(): string
 
-  abstract updateStore(entity: T): void
 
   abstract updateStore(entity: T): void
 
