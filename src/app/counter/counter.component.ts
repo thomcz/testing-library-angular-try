@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, effect, signal} from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -6,14 +6,17 @@ import {Component} from '@angular/core';
   styleUrls: ['./counter.component.scss']
 })
 export class CounterComponent {
+  count = signal(0);
 
-  value = 0;
+  private loggingEffect = effect(() => {
+      console.log(`The current count is: ${this.count()}`);
+    });
 
   decrement() {
-    this.value -= 1;
+   this.count.update(value => value - 1);
   }
 
   increment() {
-    this.value += 1;
+    this.count.update(value => value + 1);
   }
 }
