@@ -89,5 +89,7 @@
       }
     }
   },
-  "defaultProject": "testing-library-angular-try"
+  "cli": {
+    "analytics": false
+  }
 }
