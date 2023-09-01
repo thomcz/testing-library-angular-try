@@ -1,17 +1,18 @@
 import {CounterComponent} from './counter.component';
 import {fireEvent, render, screen} from '@testing-library/angular';
 import {TestBed} from '@angular/core/testing';
+import {signal} from "@angular/core";
 
 describe('CounterComponent', () => {
   describe('tested user interaction with testing-library', () => {
 
     describe('with input value', () => {
       beforeEach(async () => {
-        await render(CounterComponent, {componentProperties: {value: 5}});
+        await render(CounterComponent, {componentProperties: {count: signal(5)}});
       });
 
       it('renders the current value with given input', () => {
-        expect(screen.getByText('Current Count: 5'));
+        expect(screen.getByText('Current Count: 5' as any));
       });
     });
 
@@ -60,29 +61,29 @@ describe('CounterComponent', () => {
       const fixture = TestBed.createComponent(CounterComponent);
       const counterComponent = fixture.componentInstance;
 
-      expect(counterComponent.value).toEqual(0);
+      expect(counterComponent.count()).toEqual(0);
     });
 
     it('should increment', () => {
       const fixture = TestBed.createComponent(CounterComponent);
       const counterComponent = fixture.componentInstance;
 
-      expect(counterComponent.value).toEqual(0);
+      expect(counterComponent.count()).toEqual(0);
 
       counterComponent.increment();
 
-      expect(counterComponent.value).toEqual(1);
+      expect(counterComponent.count()).toEqual(1);
     });
 
     it('should decrement', () => {
       const fixture = TestBed.createComponent(CounterComponent);
       const counterComponent = fixture.componentInstance;
 
-      expect(counterComponent.value).toEqual(0);
+      expect(counterComponent.count()).toEqual(0);
 
       counterComponent.decrement();
 
-      expect(counterComponent.value).toEqual(-1);
+      expect(counterComponent.count()).toEqual(-1);
     });
   });
 });
