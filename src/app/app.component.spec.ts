@@ -1,10 +1,46 @@
 import {TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {render, screen} from '@testing-library/angular';
+import {fireEvent, render, screen} from '@testing-library/angular';
+import {CounterComponent} from "./counter/counter.component";
 
 describe('AppComponent', () => {
-  describe('without testing-library', () => {
+  describe('black box testing deep rendering with testing-library (integration test)', () => {
+    beforeEach(async () => {
+      await render(AppComponent, {
+        declarations:[CounterComponent],
+        schemas: [
+          CUSTOM_ELEMENTS_SCHEMA
+        ]
+      });
+    });
+
+    it('renders the current value and increment', () => {
+      const incrementControl = screen.getByRole('button', {name: /increment/i});
+      let valueControl = screen.getByTestId('value');
+
+      expect(valueControl).toHaveTextContent('Current Count: 0');
+
+      fireEvent.click(incrementControl);
+
+      expect(valueControl).toHaveTextContent('Current Count: 1');
+    });
+
+    it('renders the current value and decrement', () => {
+
+      const decrementControl = screen.getByRole('button', {name: /decrement/i});
+      let valueControl = screen.getByTestId('value');
+
+      expect(valueControl).toHaveTextContent('Current Count: 0');
+
+      fireEvent.click(decrementControl);
+
+      expect(valueControl).toHaveTextContent('Current Count: -1');
+    });
+
+  });
+
+  describe('black box testing', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         declarations: [
@@ -36,7 +72,7 @@ describe('AppComponent', () => {
       expect(compiled.querySelector('.content h1')?.textContent).toContain('testing-library-angular-try app is running!');
     });
   });
-  describe('with testing-library', () => {
+  describe('black box testing with testing-library', () => {
     beforeEach(async () => {
       await render(AppComponent, {
         schemas: [
