@@ -1,0 +1,25 @@
+button {
+  background: #fff;
+  border: 1px solid #68ac30;
+  color: #495252;
+  font-size: 1.125rem;
+  line-height: 1.35rem;
+  margin: 0 auto;
+  min-width: 189px;
+  padding: 0.844rem 2rem;
+  text-align: center;
+  width: max-content;
+}
+
+button:hover {
+  background: #68ac30;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+p {
+  color: #495252;
+  font-family: sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+}

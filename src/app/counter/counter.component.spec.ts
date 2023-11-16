@@ -1,6 +1,6 @@
 import {CounterComponent} from './counter.component';
 import {fireEvent, render, screen} from '@testing-library/angular';
-import {TestBed} from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {signal} from "@angular/core";
 
 describe('CounterComponent', () => {
@@ -48,26 +48,23 @@ describe('CounterComponent', () => {
   });
 
   describe('tested only public methods', () => {
-
+    let fixture: ComponentFixture<CounterComponent>;
+    let counterComponent: CounterComponent;
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         declarations: [
           CounterComponent
         ],
       }).compileComponents();
+      fixture = TestBed.createComponent(CounterComponent);
+      counterComponent = fixture.componentInstance;
     });
 
     it('should correctly initialize', () => {
-      const fixture = TestBed.createComponent(CounterComponent);
-      const counterComponent = fixture.componentInstance;
-
       expect(counterComponent.count()).toEqual(0);
     });
 
     it('should increment', () => {
-      const fixture = TestBed.createComponent(CounterComponent);
-      const counterComponent = fixture.componentInstance;
-
       expect(counterComponent.count()).toEqual(0);
 
       counterComponent.increment();
@@ -76,9 +73,6 @@ describe('CounterComponent', () => {
     });
 
     it('should decrement', () => {
-      const fixture = TestBed.createComponent(CounterComponent);
-      const counterComponent = fixture.componentInstance;
-
       expect(counterComponent.count()).toEqual(0);
 
       counterComponent.decrement();
