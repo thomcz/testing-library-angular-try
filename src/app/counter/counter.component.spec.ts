@@ -2,9 +2,11 @@ import {CounterComponent} from './counter.component';
 import {fireEvent, render, screen} from '@testing-library/angular';
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {signal} from "@angular/core";
+import {By} from "@angular/platform-browser";
 
 describe('CounterComponent', () => {
-  describe('tested user interaction with testing-library', () => {
+
+  describe('black box testing with testing-library', () => {
 
     describe('with input value', () => {
       beforeEach(async () => {
@@ -47,7 +49,8 @@ describe('CounterComponent', () => {
     });
   });
 
-  describe('tested only public methods', () => {
+
+  describe('white box testing', () => {
     let fixture: ComponentFixture<CounterComponent>;
     let counterComponent: CounterComponent;
     beforeEach(async () => {
