@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "testing-library-angular-try:build:production"
+              "buildTarget": "testing-library-angular-try:build:production"
             },
             "development": {
-              "browserTarget": "testing-library-angular-try:build:development"
+              "buildTarget": "testing-library-angular-try:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "testing-library-angular-try:build"
+            "buildTarget": "testing-library-angular-try:build"
           }
         }
       }
